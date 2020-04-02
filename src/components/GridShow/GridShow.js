@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { animeGenreCodes, mangaGenreCodes } from "../../data//GenreData";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  Route,
-  Redirect,
-  Link,
-  Switch,
-  BrowserRouter as Router
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 function GridShow(props) {
   const [actionData, setActionData] = useState("");
   useEffect(() => {
@@ -50,7 +44,7 @@ function GridShow(props) {
       setActionData(tempActionData);
     };
     makeApiCall();
-  }, []);
+  }, [props.genre, props.type]);
   const header = () => {
     if (props.genre === "top" && props.type === "anime") {
       return <h1>Top Anime</h1>;
