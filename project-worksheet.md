@@ -2,8 +2,9 @@
 
 ## Project Links
 
-- [github- Project 2 React](https://github.com/techienaut/project_2_react)
-- [add your deployment link]()
+- [Github - Final](https://github.com/techienaut/project_2_react)
+- [Github - Prev Commits](https://github.com/techienaut/prevCommits-my_anime_list_clone)
+- [Netlify - deployment link](https://elated-hermann-2df736.netlify.com/)
 
 ## Project Description
 

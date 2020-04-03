@@ -2,6 +2,10 @@
 
 A re-designed mini-clone of [myanimelist.net](https://myanimelist.net/), using the [Jikan API](https://jikan.moe/).
 
+## Live Demo
+
+- [MyAnimeList Clone](https://elated-hermann-2df736.netlify.com/)
+
 ## Motivation
 
 I've been an otaku for 10 years. As a student in General Assembly coding bootcamp, I was assigned a project to make a React application, using a public API. I instantly gravitated towards anime, and found the Jikan API.
