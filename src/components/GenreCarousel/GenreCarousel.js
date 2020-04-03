@@ -1,32 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./GenreCarousel.css";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
+import Carousel from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import useSlidesPerScroll from "../../helpers/useSlidesPerScroll";
-import { animeGenreCodes, mangaGenreCodes } from "../../data/GenreData";
-import {
-  Route,
-  Redirect,
-  Link,
-  Switch,
-  BrowserRouter as Router
-} from "react-router-dom";
+import { animeGenreCodes } from "../../data/GenreData";
+import { Link } from "react-router-dom";
 
 function GenreCarousel(props) {
   const [actionData, setActionData] = useState("");
   const [currPageNum, setCurrPageNum] = useState(1);
   const [carouselVal, setCarouselVal] = useState(0);
   const slidesPerScroll = useSlidesPerScroll();
-  // useEffect(() => {
-  //   setSlidesPerScroll(point);
-  // }, [point]);
   useEffect(() => {
     const makeApiCall = async () => {
       let limit = 30;
       const url = `https://api.jikan.moe/v3/search/${props.type}?genre=${props.genre}&page=${currPageNum}&order_by=score&limit=${limit}`;
       const res = await fetch(url);
       const json = await res.json();
-      console.log("json:", json);
       if (actionData) {
         setActionData(actionData.concat(json.results));
       } else {

@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Main.css";
 import GenreView from "../GenreView/GenreView";
 import SingleShow from "../SingleShow/SingleShow";
 import GridShow from "../GridShow/GridShow";
 import { animeGenreCodes, mangaGenreCodes } from "../../data/GenreData";
-import {
-  Route,
-  Redirect,
-  Link,
-  Switch,
-  BrowserRouter as Router
-} from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 function Main() {
   return (
     <div className="Main">
-      {/* <Router> */}
       <Switch>
         <Route exact path="/">
           <Redirect to="/anime-genre/all" />
@@ -57,7 +50,6 @@ function Main() {
           render={routerProps => <GridShow type="manga" {...routerProps} />}
         />
       </Switch>
-      {/* </Router> */}
     </div>
   );
 }

@@ -1,20 +1,9 @@
-import React, { useState } from "react";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
-  Dropdown
-} from "react-bootstrap";
-import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
-import { Link, Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import React from "react";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 import "./Header.css";
 import { animeGenreCodes, mangaGenreCodes } from "../../data/GenreData";
 
-// forwardRef again here!
-// NavDropdown needs access to the DOM of the Menu to measure it
 let animeGenreItems = animeGenreCodes.map((genre, index) => {
   return (
     <LinkContainer key={index} to={`/anime-genre/genre/${genre}#`}>

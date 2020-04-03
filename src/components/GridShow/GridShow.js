@@ -25,22 +25,18 @@ function GridShow(props) {
               )}&page=${i}&order_by=score`;
           }
         }
-        console.log("url:", url);
         let res = await fetch(url);
         let json = await res.json();
-        console.log("json:", json);
         if (props.genre === "top") {
           if (json.top) {
             tempActionData = tempActionData.concat(json.top);
           }
         } else {
           if (json.results) {
-            console.log("anime:", json.results);
             tempActionData = tempActionData.concat(json.results);
           }
         }
       }
-      console.log("tempaction: ", tempActionData);
       setActionData(tempActionData);
     };
     makeApiCall();

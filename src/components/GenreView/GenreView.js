@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import GenreCarousel from "../GenreCarousel/GenreCarousel";
 import LazyLoad from "react-lazyload";
 function GenreView(props) {

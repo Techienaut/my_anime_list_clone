@@ -6,10 +6,8 @@ function SingleShow(props) {
   useEffect(() => {
     const makeApiCall = async () => {
       const url = `https://api.jikan.moe/v3/${props.type}/${props.match.params.id}`;
-      console.log("url:", url);
       const res = await fetch(url);
       const json = await res.json();
-      console.log("json-anime:", json);
       setActionData(json);
     };
     makeApiCall();

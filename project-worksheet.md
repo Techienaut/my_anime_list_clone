@@ -67,7 +67,8 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
   - https://res.cloudinary.com/techienaut/image/upload/v1585274134/Multiple_Anime_c0piq2.png
   - https://res.cloudinary.com/techienaut/image/upload/v1585274132/Single_Anime_fniau1.png
   - https://res.cloudinary.com/techienaut/image/upload/v1585275333/Anime_List_yg11fn.png
-- [React Architecture(https://docs.google.com/drawings/d/17CviwfviCZFcbRvFpRmC1bYE9Cw_mwe4GtUTx-CgAAw/edit?usp=sharing)
+- [React Architecture](https://www.figma.com/file/ZIfCRBp7Wlqqd3yTb2kxon/MyAnimeList?node-id=16%3A2)
+  - Under "Components"
 
 
 ### MVP/PostMVP - 5min
@@ -75,20 +76,15 @@ Upload images of wireframe to cloudinary and add the link here with a descriptio
 The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
 #### MVP EXAMPLE
-- Fetch Jiken API
-- Navbar with Categories pop-over.
-- Carousel of categories.
-- Scrollable list for one category.
-- Single Anime:
-  - Description
-  - Reviews
+- Nav bar with links to routes within the app.
+- Main: Containers routes to rendering different components
+- GenreView: Main View of Genre Carousels
+- GenreCarousel: Single Carousels for specific Anime/Manga category
 
 #### PostMVP EXAMPLE
 
-- Filter anime based on most viewed, or highest rated.
-- More reviews page on anime/manga.
-- Search
-- Favorites
+- GridView of Top-Anime/Manga, and Anime/Manga genres.
+- SingleView of a single Anime/Manga with details about said Anime/Manga.
 
 ## Components
 ##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
@@ -97,13 +93,13 @@ Based on the initial logic defined in the previous sections try and breakdown th
 
 | Component | Description |
 | --- | :---: |
-| App | This will make the initial data pull and include React Router|
-| Nav | Navbar |
+| App | Base Components |
+| Header        | Navbar |
 | Main        | Main Page Render |
-| CatCarousel | Carousel for specific Anime/Manga category |
-| TitleImg    | Single Anime Image and title |
-| Descr       | Descr of Anime/Manga |
-| Reviews     | Average Reviews and List of Reviews |
+| GenreView | Main View of Genre Carousels |
+| GenreCarousel | Single Carousels for specific Anime/Manga category |
+| GridShow | A Bootstrap Grid Container of Top-Anime/Manga and Individual Genres |
+| SingleShow    | Descr of a single Anime/Manga |
 
 Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe. Also, put a gif at the top of your Readme before you pitch, and you'll get a panda prize.
 
@@ -115,29 +111,46 @@ Time frames are also key in the development cycle.  You have limited time to cod
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Nav          | H | 3 hr |  |  |
-| CatCarousel  | H | 4 hr |               |  |
-| TitleImg     | H | 3 hr |               |  |
-| Descr        | H | 3 hr |               |  |
-| Reviews      | H | 4 hr |               |  |
-| Responsiveness | H | 7 hr | | |
-| Total        |  | 24 hr |               |  |
-| Post-MVP     |  |  |               |  |
-| Search | M | 3 hr | | |
-| Favorites | M | 4 hr | | |
-| Reviews Page | L | 3 hr |               |  |
-| Filters      | L | 4 hr |               |  |
-| Total        |  | 38 hr |               |  |
+| Nav/Header   | H | 3 hr | 4 hr | 4 hr |
+| GenreCarousel | H | 4 hr | 7 hr | 7 hr |
+| GenreView     | H | 3 hr | 6 hr | 6 hr |
+| GridShow      | H | 3 hr | 7 hr | 7 hr |
+| Main | H | 3 hr | 3 hr | 3 hr |
+| SingleShow | H | 3 hr | 5 hr | 5 hr |
+| Total        |  | 19 hr | 32 hr | 32 hr |
 
 ## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project such as Axios, ReactStrap, D3, etc. 
+- [@brainhubeu/react-carousel](https://brainhubeu.github.io/react-carousel/docs/gettingStarted)
+- [react-bootstrap](https://react-bootstrap.github.io/)
+- [lodash.throttle](https://www.npmjs.com/package/lodash.throttle)
+- [react-lazyload](https://github.com/twobin/react-lazyload)
+- [react-router-bootstrap](https://github.com/react-bootstrap/react-router-bootstrap)
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+
+## Code I attributed
+
+- [useBreakpoint Hook — Get Media Query Breakpoints in React](https://medium.com/better-programming/usebreakpoint-hook-get-media-query-breakpoints-in-react-3f1779b73568)
+  - used in **/helpers/useSlidesPerScroll**
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
+I have somewhat of a understanding of the code below. Basically, it sets breakpoints on the screen for media responsiveness. The function exported is also a **custom react hook**. brkPnt is set to whatever value is given for the current width. In this case, the value represents how many items the GenreCarousel will display given the width of the screen. useEffect is used whenever the "resize" event listened is called. 
 
+```javascript
+const useSlidesPerScroll = () => {
+  const [brkPnt, setBrkPnt] = useState(() =>
+    getDeviceConfig(window.innerWidth)
+  );
+
+  useEffect(() => {
+    const calcInnerWidth = throttle(function() {
+      setBrkPnt(getDeviceConfig(window.innerWidth));
+    }, 200);
+    window.addEventListener("resize", calcInnerWidth);
+    return () => window.removeEventListener("resize", calcInnerWidth);
+  }, []);
+
+  return brkPnt;
+};
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
-```
+
